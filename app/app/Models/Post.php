@@ -34,4 +34,12 @@ class Post extends Model
     {
         $query->where('status', self::OPEN);
     }
+
+    /**
+     * @return bool
+     */
+    public function isClosed(): bool
+    {
+        return (int)$this->status === Post::CLOSED;
+    }
 }
