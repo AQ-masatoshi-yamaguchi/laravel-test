@@ -11,7 +11,8 @@ use Tests\TestCase;
 class PostListControllerTest extends TestCase
 {
     /**  @test */
-    function ブログ一覧が表示される(){
+    function ブログ一覧が表示される()
+    {
         $post1 = Post::factory()->hasComments(3)->create();
         $post2 = Post::factory()->hasComments(5)->create();
         Post::factory()->hasComments(1)->create();
@@ -32,9 +33,22 @@ class PostListControllerTest extends TestCase
     }
 
     /**  @test */
-    function test_(){
-        $post = Post::factory()->create();
+    function ブログの一覧で非公開のブログ表示しない()
+    {
+        $post1 = Post::factory()->closed()->create([
+            'title' => 'これは非公開のブログです',
+        ]);
 
+        $post2 = Post::factory()->create([
+            'title' => 'これは公開のブログです',
+        ]);
+
+        $this->get('/')->assertDontSee('これは非公開のブログです')->assertSee('これは公開のブログです');
+    }
+
+    /**  @test */
+    function factoryのテスト()
+    {
         $this->assertTrue(true);
     }
 }

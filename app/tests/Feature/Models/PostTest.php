@@ -20,10 +20,21 @@ class PostTest extends TestCase
     }
 
     /**  @test */
-    public function commentsリレーションtest()
+    public function commentsリレーション()
     {
         $post = Post::factory()->create();
 
         $this->assertInstanceOf(Collection::class, $post->comments);
+    }
+
+    /**  @test */
+    function ブログ公開非公開(){
+        $post1 = Post::factory()->closed()->create();
+        $post2 = Post::factory()->create();
+
+        $posts = Post::onlyOpen()->get();
+
+        $this->assertFalse($posts->contains($post1));
+        $this->assertTrue($posts->contains($post2));
     }
 }
