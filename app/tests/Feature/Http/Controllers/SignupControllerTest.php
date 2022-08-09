@@ -36,7 +36,6 @@ class SignupControllerTest extends TestCase
         $user = User::firstWhere($validData);
 
         $this->assertTrue(Hash::check('password', $user->password));
-        $this->assertTrue(false);
 
         $this->assertAuthenticatedAs($user);
     }
