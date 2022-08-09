@@ -2,9 +2,9 @@ name: Laravel
 
 on:
   push:
-    branches: [ "init-docker-compose" ]
+    branches: [ "test-laravel" ]
   pull_request:
-    branches: [ "init-docker-compose" ]
+    branches: [ "test-laravel" ]
 
 jobs:
   laravel-tests:
