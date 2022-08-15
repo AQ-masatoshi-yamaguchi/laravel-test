@@ -13,5 +13,7 @@ RUN curl -sS https://getcomposer.org/installer | php
 RUN mv composer.phar /usr/local/bin/composer
 RUN composer self-update
 
+RUN pecl install xdebug && docker-php-ext-enable xdebug
+
 COPY conf.d/opcache.ini /usr/local/etc/php/conf.d/opcache.ini
 WORKDIR /var/www/html
